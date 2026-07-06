@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+#child class class "class_ismi"("parent_class_ismi"): şeklinde yazılır.
 class Plant:
 	def __init__(self, name: str, height: float, age: int)-> None:
 		self.name = name
