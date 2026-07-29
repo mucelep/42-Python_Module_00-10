@@ -115,7 +115,7 @@ class LogProcessor(DataProcessor):
                 self._total += 1
         else:
             print(f"Processing data: {data}")
-            formatted = f"{item['log_level']}: {item['log_message']}"
+            formatted = f"{data['log_level']}: {data['log_message']}"
             self._storage.append(formatted)
             self._total += 1
 
@@ -147,7 +147,7 @@ class DataStream():
             name = type(processor).__name__.replace("Processor", " Processor")
             total = processor._total
             remaining = len(processor._storage)
-            print(f"{name}: Total {total} items processed, remaining {remaining} on processor")
+            print(f"{name}: total {total} items processed, remaining {remaining} on processor")
 
 
 if __name__ == "__main__":
@@ -163,7 +163,7 @@ if __name__ == "__main__":
 
     data = [
         'Hello world',
-        [3.14, 1, 2.71],
+        [3.14, -1, 2.71],
         [{'log_level': 'WARNING',
           'log_message': 'Telnet access! Use ssh instead'},
          {'log_level': 'INFO', 'log_message': 'User wil is connected'}],

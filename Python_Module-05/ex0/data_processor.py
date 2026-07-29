@@ -2,6 +2,7 @@
 from abc import ABC, abstractmethod
 from typing import Any
 
+
 class DataProcessor(ABC):
 
     def __init__(self) ->None:
@@ -22,6 +23,7 @@ class DataProcessor(ABC):
         value = self._storage.pop(0)
         total = (self._total - len(self._storage)) - 1
         return (total, value)
+
 
 class NumericProcessor(DataProcessor):
 
@@ -49,6 +51,7 @@ class NumericProcessor(DataProcessor):
             self._storage.append(str(data))
             self._total += 1
 
+
 class TextProcessor(DataProcessor):
 
     def validate(self, data: Any) -> bool:
@@ -74,6 +77,7 @@ class TextProcessor(DataProcessor):
             print(f"Processing data: {data}")
             self._storage.append(data)
             self._total += 1
+
 
 class LogProcessor(DataProcessor):
 
@@ -111,10 +115,9 @@ class LogProcessor(DataProcessor):
                 self._total += 1
         else:
             print(f"Processing data: {data}")
-            formatted = f"{item['log_level']}: {item['log_message']}"
+            formatted = f"{data['log_level']}: {data['log_message']}"
             self._storage.append(formatted)
             self._total += 1
-
 
 
 if __name__ == "__main__":
