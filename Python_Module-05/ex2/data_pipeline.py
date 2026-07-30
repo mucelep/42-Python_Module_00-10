@@ -120,6 +120,11 @@ class LogProcessor(DataProcessor):
             self._total += 1
 
 
+class ExportPlugin(Protocol):
+    def process_output(self, data: list[tuple[int, str]]) -> None:
+        ...
+
+
 class DataStream():
 
     def __init__(self) -> None:
@@ -149,10 +154,32 @@ class DataStream():
             remaining = len(processor._storage)
             print(f"{name}: total {total} items processed, remaining {remaining} on processor")
 
+    def output_pipeline(self, nb: int, plugin: ExportPlugin) -> None:
+        for processor in self._processors:
+            collected: list[tuple[int, str]] = []
+            for _ in range(nb):
+                try:
+                    collected.append(processor.output())
+                except IndexError:
+                    break
+            if collected:
+                plugin.process_output(collected)
+                
 
-class ExportPlugin(Protocol):
+class CSVExportPlugin:
     def process_output(self, data: list[tuple[int, str]]) -> None:
-        pass
+        values = [value for _, value in data]
+        cvs = ",".join(values)
+        print(f"CSV Output:\n  {cvs}")
+
+
+class JSONExportPlugin:
+    def process_output(self, data: list[tuple[int, str]]) -> None:
+        values = [f'"item_{rank}": "{item}"' for rank, item in data]   
+        json = "{" + ", ".join(values) + "}" 
+        print(f"JSON Output:\n  {json}")
+
+
 
 if __name__ == "__main__":
     print("=== Code Nexus - Data Processor ===\n")
@@ -161,7 +188,7 @@ if __name__ == "__main__":
     print("Initialize Data Stream...")
     stream.print_processors_stats()
     
-    data = [
+    data1 = [
         'Hello world',
         [3.14, -1, 2.71],
         [{'log_level': 'WARNING',
@@ -187,5 +214,33 @@ if __name__ == "__main__":
         "{'log_level': 'INFO', 'log_message': 'User wil is connected'}], "
         "42, ['Hi', 'five']]\n"
     )
-    stream.process_stream(data)
+    stream.process_stream(data1)
+    stream.print_processors_stats()
+    print("\nSend 3 processed data from each processor to a CSV plugin:")
+    csv_plugin = CSVExportPlugin()
+    stream.output_pipeline(3, csv_plugin)
+    stream.print_processors_stats()
+
+    print(
+        "\nSend another batch of data: [21, ['I love AI', "
+        "'LLMs are wonderful', 'Stay healthy'],"
+        " [{'log_level': 'ERROR', 'log_message': '500 server crash'}, "
+        "{'log_level': 'NOTICE',"
+        " 'log_message': 'Certificate expires in 10 days'}], "
+        "[32, 42, 64, 84, 128, 168], 'World hello']\n"
+    )
+    data_2 = [
+        21,
+        ['I love AI', 'LLMs are wonderful', 'Stay healthy'],
+        [{'log_level': 'ERROR', 'log_message': '500 server crash'},
+         {'log_level': 'NOTICE',
+          'log_message': 'Certificate expires in 10 days'}],
+        [32, 42, 64, 84, 128, 168],
+        'World hello'
+    ]
+    stream.process_stream(data_2)
+    stream.print_processors_stats()
+    print("\nSend 5 processed data from each processor to a JSON plugin:\n")
+    json_plugin = JSONExportPlugin()
+    stream.output_pipeline(5, json_plugin)
     stream.print_processors_stats()
