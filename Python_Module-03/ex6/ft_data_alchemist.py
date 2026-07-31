@@ -8,13 +8,13 @@ if __name__ == "__main__":
                'Gregory', 'john', 'kevin', 'Liam']
     print(f"Initial list of players: {players}\n")
 
-    captilaze_list: list[str] = [x.capitalize() for x in players]
-    print(f"New list with all names capitalized: {captilaze_list}\n")
+    capitalize_list: list[str] = [x.capitalize() for x in players]
+    print(f"New list with all names capitalized: {capitalize_list}\n")
 
     captilaze_only: list[str] = [x for x in players if x[0].isupper()]
     print(f"New list of capitalized names only: {captilaze_only}\n")
 
-    score_dict = {name: random.randint(0, 1000) for name in captilaze_list}
+    score_dict = {name: random.randint(0, 1000) for name in capitalize_list}
     print(f"Score dict: {score_dict}\n")
 
     score_average = round(sum(score_dict[name] for name in score_dict)

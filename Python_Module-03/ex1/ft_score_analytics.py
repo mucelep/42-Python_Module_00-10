@@ -5,7 +5,7 @@ def to_int(args: list[str]) -> list[int]:
     valid_scores: list[int] = []
     for i in args:
         try:
-            valid_scores.append(int(i))
+            valid_scores += [int(i)]
         except ValueError:
             print(f"Invalid parameter: '{i}'")
     return valid_scores
