@@ -27,14 +27,14 @@ def transcreaturesfac(factory: TransformCreatureFactory) -> None:
     print("Base:")
     print(base_creature.describe())
     print(base_creature.attack())
-    print(base_creature.transform)
+    print(base_creature.transform())
     print(base_creature.attack())
     print(base_creature.revert())
 
     print("Evolved:")
     print(evolved_creature.describe())
     print(evolved_creature.attack())
-    print(evolved_creature.transform)
+    print(evolved_creature.transform())
     print(evolved_creature.attack())
     print(evolved_creature.revert())
 
