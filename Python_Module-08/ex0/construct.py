@@ -4,7 +4,7 @@ import site
 import os
 
 if __name__ == "__main__":
-    if sys.prefix != sys.base_prefix:
+    if sys.prefix == sys.base_prefix:
         print("MATRIX STATUS: You're still plugged in\n")
         print(f"Current Python: {sys.executable}")
         print("Virtual Environment: None detected\n")
@@ -17,9 +17,12 @@ if __name__ == "__main__":
             "matrix_env\\Scripts\\activate # On Windows\n"
         )
     else:
+        site_packages = site.getsitepackages()[0]
+        venv_name = os.path.basename(sys.prefix)
+
         print("MATRIX STATUS: Welcome to the construct\n")
         print(f"Current Python: {sys.executable}")
-        print(f"Virtual Environment: {os.path.basename(sys.prefix)}")
+        print(f"Virtual Environment: {venv_name}")
         print(f"Environment Path: {sys.prefix}\n")
         print(
             "SUCCESS: You're in an isolated environment!\n"
@@ -27,4 +30,4 @@ if __name__ == "__main__":
             "the global system.\n"
         )
         print("Package installation path:")
-        print(site.getsitepackages())
+        print(f"{site_packages}")
