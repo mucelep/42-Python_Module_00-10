@@ -4,6 +4,10 @@ import site
 import os
 
 
+def is_virtual_env() -> bool:
+    return sys.prefix == sys.base_prefix
+
+
 def print_in_matrix() -> None:
     print("MATRIX STATUS: You're still plugged in\n")
     print(f"Current Python: {sys.executable}")
@@ -36,7 +40,7 @@ def print_out_matrix() -> None:
 
 
 def main() -> None:
-    if sys.prefix == sys.base_prefix:
+    if not is_virtual_env():
         print_in_matrix()
     else:
         print_out_matrix()
