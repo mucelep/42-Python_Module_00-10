@@ -5,7 +5,7 @@ import os
 
 
 def is_virtual_env() -> bool:
-    return sys.prefix == sys.base_prefix
+    return sys.prefix != sys.base_prefix
 
 
 def print_in_matrix() -> None:
