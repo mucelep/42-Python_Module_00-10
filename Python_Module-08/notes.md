@@ -1,4 +1,12 @@
 
+# Ex0 Notes
+
+
+# Ex1 Notes
+name loading olmalı claude a sor?
+
+
+
 # Pip Notes
  paket kurmak ve yönetmek
 
