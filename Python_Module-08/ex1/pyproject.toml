@@ -1,10 +1,15 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.poetry]
 name = "loading"
 version = "0.1.0"
 description = "Matrix data analysis"
+authors = ["Omer Celep <mucelep@student.42istanbul.com.tr>"]
 
 [tool.poetry.dependencies]
-python = "^3.14"
+python = "^3.13"
 numpy = "^2.5"
 pandas = "^3.0"
 matplotlib = "^3.11"
