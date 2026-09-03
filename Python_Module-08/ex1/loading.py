@@ -44,7 +44,8 @@ def visualization() -> None:
     plt.tight_layout()
     plt.savefig("matrix_analysis.png")
 
-def main():
+
+def main() -> None:
     print("LOADING STATUS: Loading programs...\n")
     print("Checking dependencies:")
     is_missing = check_dependencies(DEPENDENCIES)
