@@ -13,7 +13,7 @@ class SpaceStation(BaseModel):
     notes: Optional[str] = Field(default=None, min_length=0, max_length=200)
 
 def main():
-    valid_station: dict[str, str] = {
+    station_info: dict[str, str] = {
         "station_id": "ISS001",
         "name": "International Space Station",
         "crew_size": "6",
@@ -24,7 +24,7 @@ def main():
         "notes": ""
     }
 
-    space_station = SpaceStation(**valid_station)
+    space_station = SpaceStation(**station_info)
     status = "Operational" if space_station.is_operational else "Non Operational"
     print("Space Station Data Validation\n"
     "========================================"
@@ -41,18 +41,9 @@ def main():
     )
     print("========================================")
 
-    invalid_station: dict[str, str] = {
-        "station_id": "ISS001",
-        "name": "International Space Station",
-        "crew_size": "25",
-        "power_level": "85.5",
-        "oxygen_level": "92.3",
-        "last_maintenance": "2026-01-01",
-        "is_operational": "True",
-        "notes": ""
-    }
+    station_info["crew_size"] = 25
     try:
-        space_station2 = SpaceStation(**invalid_station)
+        space_station2 = SpaceStation(**station_info)
     except ValidationError as error:
         for e in error.errors():
             print(e['msg'])
