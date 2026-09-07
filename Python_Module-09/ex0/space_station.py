@@ -2,9 +2,10 @@ from pydantic import BaseModel, ValidationError, Field
 from datetime import datetime
 from typing import Optional
 
+
 class SpaceStation(BaseModel):
     station_id: str = Field(min_length=3, max_length=10)
-    name: str = Field(min_length=1, max_length=50)   
+    name: str = Field(min_length=1, max_length=50)
     crew_size: int = Field(ge=1, le=20)
     power_level: float = Field(ge=0.0, le=100.0)
     oxygen_level: float = Field(ge=0.0, le=100.0)
@@ -12,7 +13,8 @@ class SpaceStation(BaseModel):
     is_operational: bool = True
     notes: Optional[str] = Field(default=None, min_length=0, max_length=200)
 
-def main():
+
+def main() -> None:
     station_info: dict[str, str] = {
         "station_id": "ISS001",
         "name": "International Space Station",
@@ -25,10 +27,12 @@ def main():
     }
 
     space_station = SpaceStation(**station_info)
-    status = "Operational" if space_station.is_operational else "Non Operational"
+    status = (
+        "Operational" if space_station.is_operational
+        else "Non Operational")
+
     print("Space Station Data Validation\n"
-    "========================================"
-    )
+          "========================================")
     print(
         f"""Valid station created:
     ID: {space_station.station_id}
@@ -41,13 +45,14 @@ def main():
     )
     print("========================================")
 
-    station_info["crew_size"] = 25
+    station_info["crew_size"] = "25"
     try:
-        space_station2 = SpaceStation(**station_info)
+        space_station2 = SpaceStation.model_validate(station_info)
+        print(space_station2)
     except ValidationError as error:
         for e in error.errors():
             print(e['msg'])
 
+
 if __name__ == "__main__":
-    
     main()
