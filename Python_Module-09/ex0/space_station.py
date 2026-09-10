@@ -1,6 +1,6 @@
 from pydantic import BaseModel, ValidationError, Field
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Any
 
 
 class SpaceStation(BaseModel):
@@ -15,7 +15,7 @@ class SpaceStation(BaseModel):
 
 
 def main() -> None:
-    station_info: dict[str, str] = {
+    station_info: dict[str, Any] = {
         "station_id": "ISS001",
         "name": "International Space Station",
         "crew_size": "6",

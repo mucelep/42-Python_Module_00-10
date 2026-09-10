@@ -1,9 +1,9 @@
 
 # Ex0 Notes
-
-
+#prefix suan calısan python un(python3) ortam dizinlerini / base ise ana python un ortam dizinlerini gösterir
+#şuan calısmakta olan python yorumlayıcısının tam dosya yolu  {sys.executable}
 # Ex1 Notes
- * __Pandas__
+* __Pandas__
   * veri yapısı olusturur 
   * `.datafreame()` verileri indeksler
   * `.read_csv()` dısarıdan csv dosyası okur excel gibi
@@ -14,7 +14,21 @@
   * `.tail()` head in tersten basan versiyonu
   * `df[df['kolonadı'] > 400]` gibi 400 den yüksek olanları basabilirsin
 
+# Ex2 Notes
+load_dotenv() çağrıldığında, proje klasöründeki .env dosyasını bulur ve içindeki değişkenleri os.environ'a yükler — ama önemli: eğer o değişken zaten sistemde
 
+* __matplotlib__
+  * `.figure` veri basmak için grafik penceresi olusturur
+  * `.plot()` verileri çizgi grafik olarak çizmek için kullanılır yani grafik penceresine verileri basar
+  * `.tight_layout()` grafikteki veriler isimler etiketler vb birbirine girmesin diye otomatik düzünleme yapar
+  *  `.savefig("grafik.png")` olusturdugun grafiği dosya olarak kaydetmene yarar
+  * `.show()` grafiği yeni pencere olarak ekranda açar
+  * `.subplot(<kac satır> <kac kolon> <hani alana bassın>)` birden fazla grafiği yan yana yazabilmek için kullanılır `.subplot(1, 2, 1)` gibi ardından alt satıra plot ile veriler basılır
+  * `.scatter` line degil dot grafiği
+  * `.pie()` pasta grafiği
+  * `plt.title("Matrix Signal")`
+    `plt.xlabel("Index")`
+    `plt.ylabel("Value")` aabisi belli zaten ayık olcan
 
 # Pip Notes
  **paket kurmak ve yönetmek**

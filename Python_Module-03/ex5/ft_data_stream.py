@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     event_list = [next(g) for _ in range(10)]
     print(f"\nBuilt list of 10 events: {event_list}\n")
-
+    print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
     for event in consume_event(event_list):
         print(f"Got event from list: {event}")
-        print(f"Remains in list: {event_list}\n")
+        print(f"Remains in list: {event_list}")
