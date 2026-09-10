@@ -50,8 +50,7 @@ def main() -> None:
 
     print("Testing spell transformer...")
     trans = spell_transformer(["fireball", "heal", "shield"])
-    for i in range(3):
-        print(f"{trans[i]} ", end="")
+    print(" ".join(trans))
 
 
 if __name__ == "__main__":
