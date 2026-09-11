@@ -1,3 +1,15 @@
+# General Notes
+
+* fonksiyonları bir degiskene atayabilirsin ör
+  ```
+  * def printhello():
+      print("hello"):
+    
+    x = printhello
+    x()
+  ```
+* return edebilirsin ve liste dict gibi yapılarda saklayabilirsin
+
 # EX0 Notes
 ### Lambda Notes
 
@@ -27,3 +39,18 @@ lambda seçme sebebimiz kısa ve tek kullanımlık fonksiyonları daha kolay yaz
 * bir type hint dir
 * Bir parametrenin fonksiyon olması gerektiğini belirtmek için kullanılır.
   * `Callable[[int], None]` int alır none döndürür
+
+# EX2 Notes
+
+### nonlocale Notes
+* iç içe fonksiyon kullanıdıgımızda dış/çevreleyen (outer/enclosing) fonksiyonun bir degiskenini
+ iç fonksiyon (inner) hatırlar okur AMA degistiremez degistirme izni vermek için 
+ `nonelocal` kullanılır 
+  * **bir bakıma bu degisken çevreleyen fonksiyonun değişkeni demektir**
+#### Lexical Scoping
+* Lexical Scoping ise bir degiskenin hangi scope içinde erişlebilir oldugunu runtime dan önce 
+kodun yapısına bakarak belirlemesidir 
+#### Closure
+* closure ise inner fonksiyonun outer fonksiyonun degiskenlerini hatirlaması olayidir
+— dış fonksiyon çoktan çalışıp bitmiş olsa bile. paket hafıza python inner'in ihtiyac duydugu degiskeni inner ile paketler
+outer fonksiyonun inner fonksiyonu return etmesi beklenir 
