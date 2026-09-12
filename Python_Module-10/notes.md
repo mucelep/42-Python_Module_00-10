@@ -54,3 +54,25 @@ kodun yapısına bakarak belirlemesidir
 * closure ise inner fonksiyonun outer fonksiyonun degiskenlerini hatirlaması olayidir
 — dış fonksiyon çoktan çalışıp bitmiş olsa bile. paket hafıza python inner'in ihtiyac duydugu degiskeni inner ile paketler
 outer fonksiyonun inner fonksiyonu return etmesi beklenir 
+
+
+# EX2 Notes
+
+### functools
+#### reduce()
+  * Bir listedeki elemanları tek bir sonuca indirger.
+  * 2 ser 2 ser hareket eder | 3 parametre alir
+    * 1- fonksiyon 2-iterable (islem yapılıcak değerler) 3- initializer(opsiyonel) baslangıc degeri 
+    * `reduce(lambda x, y: x + y, [1, 2, 3], 10)`
+        10 + 1 → 11 |
+        11 + 2 → 13...
+#### partial()
+  * bir fonksiyona daha az argüman girerek aynı islevi yaptıran yeni bir fonksiyon üretmek için kullanulır 
+  * bir fonksiyonun bazı parametrelerini/argümanlarını sabitlersin
+
+  * `def guc_uygula(power, element, target):`
+  * `ates = partial(guc_uygula, 50, "ateş")`
+    `ates("Ejderha")`
+
+#### @functools.lru_cache(maxsize=None) | Sonuç önbellekleme (memoization)
+ Bir fonksiyonun daha önce hesapladığı sonuçları hatırlar, aynı girdiyle tekrar çağrılırsa yeniden hesaplamaz. Özellikle rekürsif fonksiyonlarda performansı ciddi artırır.
