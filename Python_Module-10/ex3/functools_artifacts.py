@@ -8,7 +8,7 @@ def spell_reducer(spells: list[int], operation: str) -> int:
     if not spells:
         return 0
 
-    operations: dict[str, Callable[[int, int], int]]  = {
+    operations: dict[str, Callable[[int, int], int]] = {
         "add": operator.add,
         "multiply": operator.mul,
         "max": max,
@@ -51,7 +51,7 @@ def spell_dispatcher() -> Callable[[Any], str]:
         return "Unknown spell type"
 
     @dispatch.register(int)
-    def _(spell: int) ->str:
+    def _(spell: int) -> str:
         return f"Damage spell: {spell} damage"
 
     @dispatch.register(str)
@@ -64,12 +64,36 @@ def spell_dispatcher() -> Callable[[Any], str]:
 
     return dispatch
 
-def base_enchantment(power: int, a: str, b: str) -> str:
-    return f"{b} received {a} enchantment with {power} power"
+
+def base_enchantment(a: int, b: str, c: str) -> str:
+    return f"{c} is enchanted with {b} at {a} power"
 
 
-def main():
-    pass
+def main() -> None:
+    print("Testing spell reducer...")
+    print(f'sum: {spell_reducer([10,20,30,40], "add")}')
+    print(f'Product: {spell_reducer([10,20,30,40], "multiply")}')
+    print(f'max: {spell_reducer([10,20,30,40], "max")}')
+
+    print("\nTesting partial enchanter...")
+    enchanters = partial_enchanter(base_enchantment)
+    print(enchanters["fire"]("sword"))
+    print(enchanters["ice"]("sword"))
+    print(enchanters["lightening"]("sword"))
+
+    print("\nTesting memoized fibonacci...")
+    print(f"fib(0): {memoized_fibonacci(0)}")
+    print(f"fib(1): {memoized_fibonacci(1)}")
+    print(f"fib(10): {memoized_fibonacci(10)}")
+    print(f"fib(15): {memoized_fibonacci(15)}")
+
+    print("\nTesting spell dispatcher...")
+    dispatcher = spell_dispatcher()
+    print(dispatcher(42))
+    print(dispatcher("fireball"))
+    print(dispatcher(["fireball", "iceball", "waterball"]))
+    print(dispatcher({"1": 2}))
+
 
 if __name__ == "__main__":
     main()

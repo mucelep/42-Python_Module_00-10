@@ -56,7 +56,7 @@ kodun yapısına bakarak belirlemesidir
 outer fonksiyonun inner fonksiyonu return etmesi beklenir 
 
 
-# EX2 Notes
+# EX3 Notes
 
 ### functools
 #### reduce()
@@ -76,3 +76,23 @@ outer fonksiyonun inner fonksiyonu return etmesi beklenir
 
 #### @functools.lru_cache(maxsize=None) | Sonuç önbellekleme (memoization)
  Bir fonksiyonun daha önce hesapladığı sonuçları hatırlar, aynı girdiyle tekrar çağrılırsa yeniden hesaplamaz. Özellikle rekürsif fonksiyonlarda performansı ciddi artırır.
+
+
+####  @functools.singledispatch 
+bir fonksiyonun aldıgı ilk parametrenin tipine göre farklı davranmasını sağlar 
+* @process.register ile kullanılır
+* if else yapısına benzer 
+
+
+# EX4 Notes
+
+
+## @functools.wraps(spell_func)
+ decorator yazarken orjinal fonksiyonun bilgilerini(metadata (__name __ | __doc __ gibi) ) wrapper fonksiyona aktarmak için kullanulır
+
+ decorator yapmamızın sebebi Bir fonksiyonu alıp, onu başka bir fonksiyonla sararak (wrap ederek) davranışını değiştirmek veya geliştirmek.
+
+## *args ve **kwargs
+
+* decorator e parametre vermek istiyosan min_power gibi iç içe yapı kurmak gerekir
+* 
